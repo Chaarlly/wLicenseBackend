@@ -7,8 +7,16 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<User> findByFullName(String fullName);
+    // ✅ MÉTODO NOVO - Buscar usuário por username
     Optional<User> findByUsername(String username);
-    Optional<User> findByDiscordId(String discordId);
+
+    // ✅ MÉTODO NOVO - Buscar usuário por email
+    Optional<User> findByEmail(String email);
+
+    // ✅ MÉTODO NOVO - Verificar se username existe
+    Boolean existsByUsername(String username);
+
+    // ✅ MÉTODO NOVO - Verificar se email existe
+    Boolean existsByEmail(String email);
 
 }

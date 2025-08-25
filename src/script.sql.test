@@ -1,0 +1,18 @@
+INSERT INTO CDTB_USER_USER (full_name, username, email, discord_id, password, role, created_at) VALUES ('Luis Felipe', 'luisf', 'luisf@gmail.com', 'Luis#1234', 'senha123', 'ADMIN', NOW()), ('Ana Clara', 'anac', 'ana@gmail.com', 'Ana#5678', 'senha456', 'USER', NOW()), ('Carlos Silva', 'carlos', 'carlos@gmail.com', 'Carlos#9101', 'senha789', 'USER', NOW());
+
+INSERT INTO CDTB_PRODUCT_PROD
+(name, price, description, archive, type)
+VALUES
+('RankUp', 50.00, 'Plugin de rankup para servidores', 'rankup.jar', 'RANKUP'),
+('Factions', 70.00, 'Plugin de Factions completo', 'factions.jar', 'FACTIONS'),
+('Gestão', 30.00, 'Plugin de gerenciamento do servidor', 'gestao.jar', 'GESTAO'),
+('Utilidades', 20.00, 'Plugins utilitários diversos', 'utilidades.jar', 'UTILIDADES'),
+('Addons', 15.00, 'Pequenos addons para servidores', 'addons.jar', 'ADDONS');
+
+
+INSERT INTO CDTB_USER_PRODUCT_PURCHASE (user_id, product_id) VALUES
+(1, 1), -- Luis comprou RankUp
+(1, 2), -- Luis comprou Factions
+(2, 3), -- Ana comprou Gestão
+(3, 4), -- Carlos comprou Utilidades
+(3, 5); -- Carlos comprou Addons
