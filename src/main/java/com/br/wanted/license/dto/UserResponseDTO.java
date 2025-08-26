@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class UserResponseDTO {
+
     private Long id;
     private String fullName;
     private String username;
@@ -14,6 +15,6 @@ public class UserResponseDTO {
     private String email;
     private Integer license;
     private RoleType roleType;
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

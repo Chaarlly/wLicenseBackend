@@ -1,41 +1,41 @@
 package com.br.wanted.license.model;
 
-import com.br.wanted.license.enums.RoleType;
+import com.br.wanted.license.enums.CatalogType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "cdtb_users_user")
+@Table(name = "cdtb_product_prod")
 @Data
-public class User {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String fullName;
+    @NotBlank @Size(max = 100)
+    private String name;
 
-    @Column(unique = true, nullable = false)
-    @NotBlank
-    private String username;
+    @NotBlank @Size(max = 500)
+    private String description;
 
-    private String discordId;
+    @NotNull @DecimalMin(value = "0.0", inclusive = false)
+    private BigDecimal price;
 
-    @Column(unique = true, nullable = false)
-    @NotBlank @Email
-    private String email;
+    @Size(max = 255)
+    private String overview;
 
-    @NotBlank
-    private String password;
+    private String commands;
+    private String permissions;
+    private String updates;
 
-    @Min(1) @Max(10)
-    private Integer license = 2;
-
+    @NotNull
     @Enumerated(EnumType.STRING)
-    private RoleType role;
+    private CatalogType catalog;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
