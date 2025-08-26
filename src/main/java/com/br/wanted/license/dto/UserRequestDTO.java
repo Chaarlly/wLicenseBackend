@@ -1,32 +1,27 @@
 package com.br.wanted.license.dto;
 
 import com.br.wanted.license.enums.RoleType;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
 public class UserRequestDTO {
 
-    @NotBlank(message = "Nome completo é obrigatório")
+    @NotBlank
     private String fullName;
 
-    @NotBlank(message = "Usuário é obrigatório")
+    @NotBlank
     private String username;
 
     private String discordId;
 
-    @NotBlank(message = "Email é obrigatório")
-    @Email(message = "Email inválido")
+    @NotBlank @Email
     private String email;
 
-    @NotBlank(message = "Senha é obrigatória")
+    @NotBlank
     private String password;
 
-    @Min(1)
-    @Max(10)
+    @Min(1) @Max(10)
     private Integer license = 2;
 
     private RoleType roleType;

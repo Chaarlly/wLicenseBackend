@@ -27,36 +27,29 @@ public class UserService {
         user.setPassword(request.getPassword());
         user.setLicense(request.getLicense());
         user.setRole(request.getRoleType());
-
         userRepository.save(user);
         return toResponse(user);
     }
 
     public ResponseEntity<List<UserResponseDTO>> findAll() {
-        List<UserResponseDTO> users = userRepository.findAll()
-                .stream()
-                .map(this::toResponse)
-                .collect(Collectors.toList());
+        List<UserResponseDTO> users = userRepository.findAll().stream()
+                .map(this::toResponse).collect(Collectors.toList());
         return ResponseEntity.ok(users);
     }
 
-    public UserResponseDTO findById(Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-        return toResponse(user);
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
     }
 
     public UserResponseDTO update(Long id, UserRequestDTO request) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-
         user.setFullName(request.getFullName());
         user.setUsername(request.getUsername());
         user.setDiscordId(request.getDiscordId());
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
         user.setRole(request.getRoleType());
-
         userRepository.save(user);
         return toResponse(user);
     }
@@ -76,16 +69,8 @@ public class UserService {
         dto.setEmail(user.getEmail());
         dto.setLicense(user.getLicense());
         dto.setRoleType(user.getRole());
-        dto.setCreateAt(user.getCreateAt());
+        dto.setCreatedAt(user.getCreatedAt());
         dto.setUpdatedAt(user.getUpdatedAt());
         return dto;
-    }
-
-    public Optional<User> findEntityById(Long userId) {
-        return userRepository.findById(userId);
-    }
-
-    public Optional<User> findEntityByUsername(String username) {
-        return userRepository.findByUsername(username);
     }
 }
