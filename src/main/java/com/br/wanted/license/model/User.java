@@ -11,7 +11,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "CDTB_USERS_USER")
+@Table(name = "cdtb_users_user")
 @Data
 public class User {
 
@@ -21,17 +21,18 @@ public class User {
 
     private String fullName;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     @NotBlank(message = "Usuário é obrigatório")
     private String username;
 
     private String discordId;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     @NotBlank(message = "Email é obrigatório")
     @Email(message = "Email inválido")
     private String email;
 
+    @NotBlank(message = "Senha é obrigatória")
     private String password;
 
     @Min(1)
@@ -42,7 +43,6 @@ public class User {
     private RoleType role;
 
     private LocalDateTime createAt;
-
     private LocalDateTime updatedAt;
 
     @PrePersist

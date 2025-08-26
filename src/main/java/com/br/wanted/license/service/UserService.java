@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -57,6 +56,7 @@ public class UserService {
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
         user.setRole(request.getRoleType());
+
         userRepository.save(user);
         return toResponse(user);
     }
@@ -66,7 +66,6 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
         userRepository.delete(user);
     }
-
 
     private UserResponseDTO toResponse(User user) {
         UserResponseDTO dto = new UserResponseDTO();
@@ -88,19 +87,5 @@ public class UserService {
 
     public Optional<User> findEntityByUsername(String username) {
         return userRepository.findByUsername(username);
-    }
-
-    public User getEntityById(Long userId) {
-        return userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-    }
-
-    public User getEntityByUsername(String username) {
-        return userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-    }
-
-    public User getCurrentUser() {
-        throw new RuntimeException("Método getCurrentUser não implementado");
     }
 }

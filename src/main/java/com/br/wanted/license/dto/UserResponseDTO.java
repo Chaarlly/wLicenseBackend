@@ -3,7 +3,6 @@ package com.br.wanted.license.dto;
 import com.br.wanted.license.enums.RoleType;
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,8 +13,7 @@ public class UserResponseDTO {
     private String discordId;
     private String email;
     private Integer license;
-    private RoleType roleType; // ✅ roleType (igual ao RequestDTO)
+    private RoleType roleType;
     private LocalDateTime createAt;
     private LocalDateTime updatedAt;
-    private BigDecimal creditBalance;
 }

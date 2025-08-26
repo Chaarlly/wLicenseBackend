@@ -29,5 +29,5 @@ public class UserRequestDTO {
     @Max(10)
     private Integer license = 2;
 
-    private RoleType roleType; // ✅ ESTÁ CORRETO (roleType)
+    private RoleType roleType;
 }

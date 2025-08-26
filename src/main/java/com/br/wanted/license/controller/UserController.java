@@ -15,9 +15,9 @@ import java.util.List;
 @RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
-    
+
     private final UserService service;
-    
+
     @GetMapping
     public ResponseEntity<List<UserResponseDTO>> findAll() {
         return service.findAll();
@@ -26,7 +26,7 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id) {
         UserResponseDTO user = service.findById(id);
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+        return ResponseEntity.ok(user); // corrigido: era CREATED
     }
 
     @PostMapping
@@ -36,15 +36,15 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> update(@PathVariable Long id, @Valid @RequestBody UserRequestDTO dto) {
+    public ResponseEntity<UserResponseDTO> update(@PathVariable Long id,
+                                                  @Valid @RequestBody UserRequestDTO dto) {
         UserResponseDTO updatedUser = service.update(id, dto);
         return ResponseEntity.ok(updatedUser);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}") // corrigido: faltava {id}
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 }
